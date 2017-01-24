@@ -59,3 +59,24 @@
   },`
 
 * Le **this** nous permet d'accéder à **n'importe quelle** propriété présente dans `data:`
+4. Le raccourci pour le `v-on` est le `@` soit `@click="close"`
+
+####v-model
+
+1. Ici pour que la valeur d'un texte change avec un input :
+2. Nous créons un input avec la valeur `v-model="nomdumodel"`
+3. Puis nous l'appelons dans notre vue également à l'endroit souhaité comme une variable autre `{{ nomdumodel }}`
+4. Enfin dans le app.js nous le déclarons dans les `data:` : `nomdumodel: "Dunno"`
+
+1. Cela nous permet (par exemple) d'afficher sous l'une des alertes son statut actuel:
+ * En mettant une variable sous celle-ci
+ * en la déclarant dans nos `data:`
+ * dans la fonction `close` de rajouter losque l'alerte se ferme `this.status = "Fermée"`
+
+1. Dans le cas d'une checkbox **exemple** :
+ * `<input type="checkbox" v-model="state" :true-value="'Cochée'" :false-value="'Décochée'">
+       <p>
+         {{ state }}
+       </p>`
+* Et on déclare dans app.js la variable avec le statut initial : `state: 'Décochée'
+`  
