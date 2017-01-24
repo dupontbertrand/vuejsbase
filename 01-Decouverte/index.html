@@ -11,8 +11,10 @@
 </head>
 <body>
   <div class="container" id="app">
-
-    {{ message }}
+    {{ message }}<br>
+    <a v-bind:href="link1">Test avec le v-bind:href</a><br>
+    <a :href="link2">Test avec le :href</a><br>
+    <a :href="link1 + '/test'">Concaténation avec " + '/test'"</a>
 
   </div>
 
