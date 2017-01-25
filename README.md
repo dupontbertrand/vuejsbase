@@ -82,9 +82,28 @@
 
 ## 02 - L'instance
 
-1. On stocke tout le `new Vue` dans une variable (ici `vm`) soit `let vm = ` pour nous permettre en console de l'inspecter avec un simple `vm `
+1. On stocke tout le `new Vue` dans une variable (ici `vm`) soit `let vm = ` pour nous permettre en console de l'inspecter avec un simple `vm`
 2. Vue a un systeme de **_guetteur_** et de **_setteur_**
 3. **C'est une des limitations de Vue.js, comme le montre l'exemple on ne peut pas changer ici le tableau `persons` en voulant accéder à l'index [0] par exemple, on passe par un .push('valeur')**
  * Soit `this.persons2.push("test")` et non **pas** `this.persons2[0] = "test"` (Voir à utiliser le `assign` aussi ..?)
 4. Autre limitation : On ne peut pas rajouter de variable au fur et à mesure sans les avoir déclaré dans notre `data:`
 5. On peut accéder à notre html via `vm2.$el` (ou `vm2` est ici l'ID de l'élément Vue.js)
+
+####A quel moment binder quelque chose sur notre élément ?
+
+Voir l'image ci-dessous pour le diagramme :
+
+Explication :
+**NOUS POUVONS NOUS GREFFER SUR CHAQUE METHODE (en rouge ici)**
+`  mounted:
+    function() {
+      console.log('test mounted')
+    },`
+
+**Quand on monte un element avec `mounted:` il faut penser à le supprimer avec `destroyed:` sinon celui ci continue de s'effectuer et peut ralentir l'app**
+
+1. Vue.js ne peut se greffer que sur les propriétés présentes dans `data:`
+2. Pas d'accés à un tableau via l'index
+3. Pas la possibilité de créer de nvlles propriétés au sein d'un objet
+4. Dans le lifecycle : `mounted` nous permet de savoir quand est-ce que notre élément est réellement disponible et est présent dans le DOM
+5. `destroyed` nous permet de supprimer "réellement" les écouteurs montés

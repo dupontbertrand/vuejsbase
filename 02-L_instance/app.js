@@ -47,12 +47,13 @@ let vm2 = new Vue ({
 
   data: {
     persons2: ['Bertrand', 'Ivan', 'Wilfried', 'Yoann', 'Ophélie', 'GuillaumeG', 'GuillaumeL', 'Ahrry', 'Robin', 'Romain'],
-    demo: ''
+    demo: '',
+    seconds: 0
   },
 
   methods: {
     addPerson: function () {
-      this.persons2.push("test");
+      this.persons2.push("Test"),
       this.demo = "Dunno"
     },
   },
@@ -62,10 +63,13 @@ let vm2 = new Vue ({
       console.log('test beforeCreate ' + this.$el + ' : undefined car le beforeCreate se fait avant même d_observer les data:' )
     },
 
-  mounted:
-    function() {
-      console.log('test mounted ' + this.$el)
+  mounted: function() {
+      setInterval(() => {
+        console.log('Time')
+        this.seconds++
+      }, 1000)
     },
+
 
 
 })
