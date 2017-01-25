@@ -1,5 +1,5 @@
 # Cheat Sheet vue.js during grafikart tutorial
-
+[Lien des vidéos grafikart](https://www.youtube.com/watch?v=g7YKecZhFRA&list=PLjwdMgw5TTLW-mAtlR46VajrKs4dep3y0)
 ## 01 - Decouverte
 
 1. Englober d'un élément avec un ID (ici "app")
