@@ -107,3 +107,5 @@ Explication :
 3. Pas la possibilité de créer de nvlles propriétés au sein d'un objet
 4. Dans le lifecycle : `mounted` nous permet de savoir quand est-ce que notre élément est réellement disponible et est présent dans le DOM
 5. `destroyed` nous permet de supprimer "réellement" les écouteurs montés
+
+## 03 - Propriétés combinées et watchers
