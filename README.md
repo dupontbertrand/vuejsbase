@@ -78,5 +78,13 @@
        <p>
          {{ state }}
        </p>`
-* Et on déclare dans app.js la variable avec le statut initial : `state: 'Décochée'
-`  
+* Et on déclare dans app.js la variable avec le statut initial : `state: 'Décochée'`
+
+## 02 - L'instance
+
+1. On stocke tout le `new Vue` dans une variable (ici `vm`) soit `let vm = ` pour nous permettre en console de l'inspecter avec un simple `vm `
+2. Vue a un systeme de **_guetteur_** et de **_setteur_**
+3. **C'est une des limitations de Vue.js, comme le montre l'exemple on ne peut pas changer ici le tableau `persons` en voulant accéder à l'index [0] par exemple, on passe par un .push('valeur')**
+ * Soit `this.persons2.push("test")` et non **pas** `this.persons2[0] = "test"` (Voir à utiliser le `assign` aussi ..?)
+4. Autre limitation : On ne peut pas rajouter de variable au fur et à mesure sans les avoir déclaré dans notre `data:`
+5. On peut accéder à notre html via `vm2.$el` (ou `vm2` est ici l'ID de l'élément Vue.js)
