@@ -124,4 +124,21 @@ De plus, les propriétées `computed:` peuvent prendre un `get:` et un `set:` co
     }
   }`
 
-  Celui-ci nous permet de savoir quand une variable est modifiée, trés utile en term de perfs aussi si l'on veut (par exemple), un comportement différent pour un champ et ne pas appeler de recherche AJAX sur celui-ci
+  Celui-ci nous permet de savoir quand une variable est modifiée, trés utile en term de perfs aussi si l'on veut (par exemple), un comportement différent pour un champ et ne pas appeler de recherche AJAX sur celui-ci.
+
+## 04 - Les directives
+
+Les directives sont par exemple : `v-model v-on v-click v-if v-bind`, attributs spéciaux pour comportements particuliers.
+
+Nous pouvons créer les nôtres
+
+####Modifiers :
+
+Les modifiers sont des "attributs" que l'on rajoute sur (par exemple) nos `@click` => `prevent stop self capture`
+Ils nous permettent de ne pas forcément passer par notre app.js pour des choses "basiques"
+Autre exemple pour un input text : `.lazy` ou le changement se fera une fois que le focus est retiré.
+Pour les autres exemple voir l'index 04 ainsi que pour le `onkeyup` etc..
+
+####Créer ses directives :
+
+On les créer en "inventant" un attribut par exemple : `v-test="blablabla"` 
