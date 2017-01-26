@@ -109,3 +109,19 @@ Explication :
 5. `destroyed` nous permet de supprimer "réellement" les écouteurs montés
 
 ## 03 - Propriétés combinées et watchers
+
+Voir les exemples dans le dossier 03 pour bien comprendre pourquoi utiliser `computed:` est beaucoup plus intéressant en terme de performances. En effet en utilisant `computed:` nous appellerons notre `function` qui nous intéresse **uniquement** lorsque celle-ci est changée, contrairement à `methods:` qui fera un appel à toutes les modifications pour vérifier si notre model a été changé.
+
+De plus, les propriétées `computed:` peuvent prendre un `get:` et un `set:` comme ici dans l'exemple où l'on dira que notre fullname est **un objet** qui aura un guetteur et un setteur, ce qui nous permettra de changer sa valeur mais aussi d'afficher celle-ci de manière simple.
+
+####Watchers
+
+`watch:` est trés utile:
+
+` watch: {
+    fullname: function (value) {
+      console.log('Watch ' + value)
+    }
+  }`
+
+  Celui-ci nous permet de savoir quand une variable est modifiée, trés utile en term de perfs aussi si l'on veut (par exemple), un comportement différent pour un champ et ne pas appeler de recherche AJAX sur celui-ci

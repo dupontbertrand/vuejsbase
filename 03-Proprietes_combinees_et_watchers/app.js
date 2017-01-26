@@ -27,6 +27,7 @@ let vm = new Vue ({
       this.state1 = 'true'
       }
     },
+
     close: function () {
       this.success2 = false
       this.state2 = 'close'
@@ -68,7 +69,7 @@ let vm2 = new Vue ({
         console.log('Time')
         this.seconds++
       }, 1000)
-    },
+    }
 })
 
 
@@ -76,7 +77,45 @@ let vm3 = new Vue ({
   el: '#app3',
 
   data: {
-
+    success3: false,
+    message3: 'Message3',
+    success4: false,
+    message4: 'Message4',
+    firstname: 'Prénom',
+    lastname: 'Nom',
   },
+
+  methods: {
+    cls2: function() {
+      console.log('test appel method cls2')
+      return this.success3 === true ? 'alert-success' : 'alert-danger'
+    }
+  },
+
+  computed: {
+    cls3: function() {
+      console.log('test appel method cls3')
+      return this.success4 === true ? 'alert-success' : 'alert-danger'
+    },
+    fullname: {
+      get: function() {
+        return this.firstname + ' ' + this.lastname
+      },
+      set: function (value){
+        console.log(value)
+        let parts = value.split(' ')
+        this.firstname = parts[0]
+        this.lastname = parts[1]
+      }
+    }
+  },
+
+  watch: {
+    fullname: function (value) {
+      console.log('Watch ' + value)
+    }
+  }
+
+
 
 })
