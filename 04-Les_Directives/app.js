@@ -121,12 +121,30 @@ Vue.directive('salut', {
   bind: function(el, binding, vnode) {
     console.log('Notre directive salut est bind' + el + binding)
     el.value = binding.value
+  },
+  update: function(el, binding, vnode, oldvnode) {
+    console.log('Directive salut update')
   }
-
 })
+
+// Les deux directives ci-dessous et ci-dessus auront le même comportement, c'est la manière de les écrire qui change
+
+Vue.directive('salut2', function(el, binding) {
+    console.log('Notre directive salut2 est bind' + el + binding)
+    el.value = binding.value
+})
+
+let salut3 = function(el, binding) {
+    console.log('Notre directive salut3 est bind' + el + binding + ' OU celle ci a été appelée')
+    el.value = binding.value
+}
 
 let vm4 = new Vue ({
   el: '#app4',
+
+  directives: {
+    salut3: salut3
+  },
 
   data: {
     firstname: 'Prénom',
@@ -135,7 +153,9 @@ let vm4 = new Vue ({
     message6: 'Message6.lazy',
     message7: 'Message7.number',
     message8: 'trim',
-    message9: 'test_directive'
+    message9: 'test_directive',
+    message10: 'test_directive_2',
+    message11: 'test_directive_3'
   },
 
   methods: {

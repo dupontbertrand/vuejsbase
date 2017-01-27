@@ -141,4 +141,10 @@ Pour les autres exemple voir l'index 04 ainsi que pour le `onkeyup` etc..
 
 ####Créer ses directives :
 
-On les créer en "inventant" un attribut par exemple : `v-test="blablabla"` 
+On les créer en "inventant" une directive par exemple : `v-salut="message9"` puis nous déclarons dans app.js de manière **globale** :
+`Vue.directive('salut', {
+  bind: function(el, binding, vnode) {
+    console.log('Notre directive salut est bind' + el + binding)
+    el.value = binding.value
+  }
+})`

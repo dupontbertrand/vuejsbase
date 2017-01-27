@@ -160,8 +160,17 @@
       <input type="text" name="name" v-model.number="message8">
       ====={{message8}}=====<br>
       <input type="text" name="name" @keyup.space="testspace" placeholder="Test keyup space"><br><br>
-      <input type="text" name="name" v-salut="message9">
-      {{message9}}<br>
+      <input type="text" name="name" v-salut="message9"> Ici nous avons un v-salut="message9" et juste aprés un appel de variable message9, puis nous déclarons notre directive (voir app.js)
+      <input type="text" name="name" v-model="message9">
+      {{message9}}<br><br>
+
+      <input type="text" name="name" v-salut2="message10"> Ici nous avons un v-salut="message10" et juste aprés un appel de variable message10, puis nous déclarons notre directive (voir app.js)
+      <input type="text" name="name" v-model="message10">
+      {{message10}}<br><br>
+
+      <input type="text" name="name" v-salut3="message11"> Ici nous avons un v-salut="message11" et juste aprés un appel de variable message11, puis nous déclarons notre directive (voir app.js)
+      <input type="text" name="name" v-model="message11">
+      {{message11}}<br>
 
     </div>
 
