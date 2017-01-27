@@ -142,9 +142,37 @@ Pour les autres exemple voir l'index 04 ainsi que pour le `onkeyup` etc..
 ####Créer ses directives :
 
 On les créer en "inventant" une directive par exemple : `v-salut="message9"` puis nous déclarons dans app.js de manière **globale** :
+
 `Vue.directive('salut', {
   bind: function(el, binding, vnode) {
     console.log('Notre directive salut est bind' + el + binding)
     el.value = binding.value
   }
 })`
+
+Nous pouvons également travailler sur le `bind:` et le `update:` :
+
+`Vue.directive('salut', {
+  bind: function(el, binding, vnode) {
+    console.log('Notre directive salut est bind' + el + binding)
+    el.value = binding.value
+  },
+  update: function(el, binding, vnode, oldvnode) {
+    console.log('Directive salut update')
+  }
+})`
+
+Enfin, nous pouvons concilier les deux car dans cet exemple nous voulons que tout réagisse ensemble, que le deuxieme input avec le model message11 change ET la valeur de l'input ET l'affichage de notre variable :
+
+`let salut3 = function(el, binding) {
+    console.log('Notre directive salut3 est bind' + el + binding + ' OU celle ci a été appelée')
+    el.value = binding.value
+}`
+
+Puis nous la déclarons dans notre composant Vue :
+
+` directives: {
+    salut3: salut3
+  },`
+
+  **Les directives sont trés utiles mais les cas d'utilisations se révelent relativement complexe** __Doc doc doc doc__
