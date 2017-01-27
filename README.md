@@ -176,3 +176,21 @@ Puis nous la déclarons dans notre composant Vue :
   },`
 
   **Les directives sont trés utiles mais les cas d'utilisations se révelent relativement complexe** __Doc doc doc doc__
+
+## 05 - Les filtres
+
+Les filtres s'utilisent en mettant un pipe | par exemple `{{ message | filtre }}`
+On le déclare hors de notre composant de cette facon :
+`Vue.filter('capitalize', function (value) {
+  return value.toUpperCase()
+  })`
+
+Nous pouvons le déclarer hors de notre composant mais ne l'appeller que dans un de celui-ci :
+`let dunno = function (value) {
+  return value.toLowerCase()
+}`
+
+`let vm5 = new Vue ({
+  el: '#app5',
+
+  filters: {dunno},`

@@ -187,3 +187,34 @@ let vm4 = new Vue ({
 })
 
 // ===========================================================================================
+
+Vue.filter('capitalize', function (value) {
+  return value.toUpperCase()
+})
+
+Vue.filter('reverse', function (value) {
+  return value.split('').reverse().join('')
+})
+
+Vue.filter('addvalue', function (value, prefix, suffix) {
+  return prefix + value.toUpperCase() + suffix
+})
+
+let dunno = function (value) {
+  return value.toLowerCase()
+}
+
+let vm5 = new Vue ({
+  el: '#app5',
+
+  filters: {dunno},
+
+  data: {
+    testfilter: 'capitalize',
+    testfilter2: 'reverse',
+    testfilter3: 'reverse and capitalize',
+    testfilter4: 'add prefix and suffix',
+    testfilter5: 'TEST'
+  },
+
+})
