@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <title></title>
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <style type="text/css">
+  </style>
+</head>
+<body>
+  <div class="container" id="app">
+    <h1>01 - DECOUVERTE</h1>
+
+    {{ message }}<br>
+    <a v-bind:href="link1">Test avec le v-bind:href</a><br>
+    <a :href="link2">Test avec le :href</a><br>
+    <a :href="link1 + '/test'">Concaténation avec " + '/test'"</a><br>
+    <div class="alert alert-success" role="alert" v-if="success1">
+      <p>
+        Test changement d'alert selon le state de success -> Changer de state <button type="button" name="button" v-on:click="changestate"></button>
+      </p>
+    </div>
+    <div class="alert alert-danger" role="alert" v-else>
+      <p>
+        Echec -> Changer de state <button type="button" name="button" v-on:click="changestate"></button>
+      </p>
+    </div>
+    <p>
+      State actuel de l'alert au dessus : {{ state1 }}
+    </p>
+
+    <div class="alert alert-success" role="alert" v-if="success2">
+      <button type="button" class="close" aria-label="Close" v-on:click="close"><span aria-hidden="true">&times;</span></button>
+      <p>
+        Test du close avec le v-on:click
+      </p>
+    </div>
+    <div v-else>
+      <button type="button" name="button" v-on:click="open">Ouvrir l'alert</button>
+    </div>
+
+    <div class="alert alert-success" role="alert" v-if="success2">
+      <button type="button" class="close" aria-label="Close" @click="close"><span aria-hidden="true">&times;</span></button>
+      <p>
+        Test du close avec le @click
+      </p>
+    </div>
+    <div v-else>
+      <button type="button" name="button" v-on:click="open">Ouvrir l'alert</button>
+    </div>
+    <p>
+      State actuel des alerts au dessus : {{ state2 }}
+    </p>
+    <ul>
+      <li v-for="person in persons"> {{ person }}</li>
+    </ul>
+
+    <div class="input-group">
+      <span class="input-group-addon" id="basic-addon1">@</span>
+      <input type="text" class="form-control" placeholder="Username" aria-describedby="basic-addon1" v-model="message2">
+    </div>
+    <h5>{{ message2 }}</h5>
+
+    <input type="checkbox" v-model="state" :true-value="'Cochée'" :false-value="'Décochée'">
+      <p>
+        {{ state }}
+      </p>
+
+    <input type="checkbox" v-model="cls" :true-value="'alert-success'" :false-value="'alert-danger'">
+    <div class="alert" :class="cls" role="alert">
+      <p>
+        Changement class avec un v-model déclaré dans app et conditions de class en attr
+      </p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="container" id="app2">
+    <h1>02 - L'INSTANCE</h1>
+
+    {{ persons2 }}
+
+    <button type="button" @click="addPerson">Ajouter une personne</button><br>
+    {{ demo }}<br>
+
+    {{ seconds }}
+
+  </div>
+
+
+
+  <script type="text/javascript" src="vue.js"></script>
+  <script type="text/javascript" src="app.js"></script>
+  <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

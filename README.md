@@ -1,5 +1,5 @@
 # Cheat Sheet vue.js during grafikart tutorial
-
+[Lien des vidéos grafikart](https://www.youtube.com/watch?v=g7YKecZhFRA&list=PLjwdMgw5TTLW-mAtlR46VajrKs4dep3y0)
 ## 01 - Decouverte
 
 1. Englober d'un élément avec un ID (ici "app")
@@ -78,5 +78,119 @@
        <p>
          {{ state }}
        </p>`
-* Et on déclare dans app.js la variable avec le statut initial : `state: 'Décochée'
-`  
+* Et on déclare dans app.js la variable avec le statut initial : `state: 'Décochée'`
+
+## 02 - L'instance
+
+1. On stocke tout le `new Vue` dans une variable (ici `vm`) soit `let vm = ` pour nous permettre en console de l'inspecter avec un simple `vm`
+2. Vue a un systeme de **_guetteur_** et de **_setteur_**
+3. **C'est une des limitations de Vue.js, comme le montre l'exemple on ne peut pas changer ici le tableau `persons` en voulant accéder à l'index [0] par exemple, on passe par un .push('valeur')**
+ * Soit `this.persons2.push("test")` et non **pas** `this.persons2[0] = "test"` (Voir à utiliser le `assign` aussi ..?)
+4. Autre limitation : On ne peut pas rajouter de variable au fur et à mesure sans les avoir déclaré dans notre `data:`
+5. On peut accéder à notre html via `vm2.$el` (ou `vm2` est ici l'ID de l'élément Vue.js)
+
+####A quel moment binder quelque chose sur notre élément ?
+
+Voir l'image ci-dessous pour le diagramme :
+
+Explication :
+**NOUS POUVONS NOUS GREFFER SUR CHAQUE METHODE (en rouge ici)**
+`  mounted:
+    function() {
+      console.log('test mounted')
+    },`
+
+**Quand on monte un element avec `mounted:` il faut penser à le supprimer avec `destroyed:` sinon celui ci continue de s'effectuer et peut ralentir l'app**
+
+1. Vue.js ne peut se greffer que sur les propriétés présentes dans `data:`
+2. Pas d'accés à un tableau via l'index
+3. Pas la possibilité de créer de nvlles propriétés au sein d'un objet
+4. Dans le lifecycle : `mounted` nous permet de savoir quand est-ce que notre élément est réellement disponible et est présent dans le DOM
+5. `destroyed` nous permet de supprimer "réellement" les écouteurs montés
+
+## 03 - Propriétés combinées et watchers
+
+Voir les exemples dans le dossier 03 pour bien comprendre pourquoi utiliser `computed:` est beaucoup plus intéressant en terme de performances. En effet en utilisant `computed:` nous appellerons notre `function` qui nous intéresse **uniquement** lorsque celle-ci est changée, contrairement à `methods:` qui fera un appel à toutes les modifications pour vérifier si notre model a été changé.
+
+De plus, les propriétées `computed:` peuvent prendre un `get:` et un `set:` comme ici dans l'exemple où l'on dira que notre fullname est **un objet** qui aura un guetteur et un setteur, ce qui nous permettra de changer sa valeur mais aussi d'afficher celle-ci de manière simple.
+
+####Watchers
+
+`watch:` est trés utile:
+
+` watch: {
+    fullname: function (value) {
+      console.log('Watch ' + value)
+    }
+  }`
+
+  Celui-ci nous permet de savoir quand une variable est modifiée, trés utile en term de perfs aussi si l'on veut (par exemple), un comportement différent pour un champ et ne pas appeler de recherche AJAX sur celui-ci.
+
+## 04 - Les directives
+
+Les directives sont par exemple : `v-model v-on v-click v-if v-bind`, attributs spéciaux pour comportements particuliers.
+
+Nous pouvons créer les nôtres
+
+####Modifiers :
+
+Les modifiers sont des "attributs" que l'on rajoute sur (par exemple) nos `@click` => `prevent stop self capture`
+Ils nous permettent de ne pas forcément passer par notre app.js pour des choses "basiques"
+Autre exemple pour un input text : `.lazy` ou le changement se fera une fois que le focus est retiré.
+Pour les autres exemple voir l'index 04 ainsi que pour le `onkeyup` etc..
+
+####Créer ses directives :
+
+On les créer en "inventant" une directive par exemple : `v-salut="message9"` puis nous déclarons dans app.js de manière **globale** :
+
+`Vue.directive('salut', {
+  bind: function(el, binding, vnode) {
+    console.log('Notre directive salut est bind' + el + binding)
+    el.value = binding.value
+  }
+})`
+
+Nous pouvons également travailler sur le `bind:` et le `update:` :
+
+`Vue.directive('salut', {
+  bind: function(el, binding, vnode) {
+    console.log('Notre directive salut est bind' + el + binding)
+    el.value = binding.value
+  },
+  update: function(el, binding, vnode, oldvnode) {
+    console.log('Directive salut update')
+  }
+})`
+
+Enfin, nous pouvons concilier les deux car dans cet exemple nous voulons que tout réagisse ensemble, que le deuxieme input avec le model message11 change ET la valeur de l'input ET l'affichage de notre variable :
+
+`let salut3 = function(el, binding) {
+    console.log('Notre directive salut3 est bind' + el + binding + ' OU celle ci a été appelée')
+    el.value = binding.value
+}`
+
+Puis nous la déclarons dans notre composant Vue :
+
+` directives: {
+    salut3: salut3
+  },`
+
+  **Les directives sont trés utiles mais les cas d'utilisations se révelent relativement complexe** __Doc doc doc doc__
+
+## 05 - Les filtres
+
+Les filtres s'utilisent en mettant un pipe | par exemple `{{ message | filtre }}`
+On le déclare hors de notre composant de cette facon :
+`Vue.filter('capitalize', function (value) {
+  return value.toUpperCase()
+  })`
+
+Nous pouvons le déclarer hors de notre composant mais ne l'appeller que dans un de celui-ci :
+`let dunno = function (value) {
+  return value.toLowerCase()
+}`
+
+`let vm5 = new Vue ({
+  el: '#app5',
+
+  filters: {dunno},`
