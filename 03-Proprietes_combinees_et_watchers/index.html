@@ -90,6 +90,43 @@
 
   </div>
 
+<hr>
+
+  <div class="container" id="app3">
+    <h1>03 - Propriétés combinées et watchers</h1>
+    <input type="checkbox" name="name" v-model="success3">
+    <div class="alert" :class="cls2()" role="alert">
+      <p>
+        Salut les gens : checkbox au dessus avec un v-model success3 et cette alert appelle la :class cls2()
+      </p>
+    </div>
+    <input type="text" name="name" v-model="message3">
+    {{ message3 }}
+    <h5>Soucis juste au dessus : Le console.log 'test appel method cls2' est appelé même si l'on change la valeur de message3, Vue vérifie
+    à chaque fois qu'une modification est faites sur le template si l'on change cls2</h5>
+
+    <h3>Propriétés computed : </h3>
+    <input type="checkbox" name="name" v-model="success4">
+    <div class="alert" :class="cls3" role="alert">
+      <p>
+          Salut les gens : checkbox au dessus avec un v-model success4 et cette alert appelle la :class cls3
+      </p>
+    </div>
+    <input type="text" name="name" v-model="message4">
+    {{ message4 }}
+    <h5>Avec la méthode au dessus, cls2 sera toujours appelée à chaque modif sur le template mais cls3 sera appelé uniquement
+    lorsque on l'utilise ave la checkbox/</h5>
+
+    <p>
+      Prénom : {{ firstname }}<br>
+      Nom : {{ lastname }}<br>
+      Nom complet : {{ fullname }}<br>
+      Changement : <input type="text" name="name" v-model="fullname">
+    </p>
+
+
+  </div>
+
 
 
   <script type="text/javascript" src="vue.js"></script>
